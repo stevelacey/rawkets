@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<title>Rawkets | A massively multiplayer game built using HTML5 canvas and WebSockets</title>
+		<meta charset="utf-8">
+		<meta name="description" content="Rawkets is a massively multiplayer game in which you can shoot and interact with other players, in real-time, in space! It uses the latest Web technologies, including HTML5 canvas and WebSockets.">
+			
+		<link rel="stylesheet" href="style/reset.css">
+		<link rel="stylesheet" href="style/main.css?<?=time()?>">
+	</head>
+	
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		
+		<p id="ping"></p>
+		
+		<div id="mask"></div>
+		
+		<section id="welcome">
+			<header>
+				<h1>Rawkets</h1>
+			</header>
+			
+			<p>A massively multiplayer game in which you can shoot and interact with other players, in real-time, in space! It uses the latest Web technologies, including HTML5 canvas and WebSockets.</p>
+			
+			<p>Released early, updated often. <a href="http://rawkes.com/blog/2010/10/23/rawkets-development-update-1">Find out more about the game</a>.</p>
+		</section>
+		
+		<p id="attribution">By Rob Hawkes – <a href="http://twitter.com/rawkets">Twitter</a> – <a href="http://rawkes.com/blog/2010/10/23/rawkets-development-update-1">About</a> - <a href="http://github.com/robhawkes/rawkets">Source Code</a> - <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rawkets.com" data-counturl="http://rawkets.com" data-text="Check out Rawkets, a massively multiplayer game made by @robhawkes using HTML5 canvas and WebSockets" data-count="horizontal" data-via="rawkets" data-related="robhawkes:The guy behind Rawkets">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> - <script src="http://www.stumbleupon.com/hostedbadge.php?s=2&r=http://rawkets.com"></script> - <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Frawkets.com&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true" class="fb-button"></iframe></p>
+		
+		<section id="offline">
+			<h1>Sorry, Rawkets is offline at the moment.</h1>
+			<p>Please try again in 5 minutes.</p>
+		</section>
+		<section id="support">
+			<h1>Sorry, your browser doesn't support WebSockets.</h1>
+			<p>Supported browsers are Safari, Chrome and Firefox 4 beta.</p>
+		</section>
+		<section id="authenticate">
+			<h1>Sorry, Twitter authentication failed.</h1>
+			<p>Unfortunately this is a new feature and isn't perfect just yet.</p>
+		</section>
+		<section id="playerExists">
+			<h1>Sorry, you seem to have a twin.</h1>
+			<p>Only one rawket is allowed per Twitter account.</p>
+		</section>
+		
+		<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->		
+		<script type="text/javascript" src="js/jquery/jquery-dev.js"></script>
+		
+		<script type="text/javascript">
+			$(function() {
+				// Admittedly probably a stupid way to pass these variables into the game code, but it works.
+								window.TWITTER_ACCESS_TOKEN = "11262212-ubOTZVO7lGRuawtmR0jvP7e9QrmN0iYizX4oFgWbQ";
+				window.TWITTER_ACCESS_TOKEN_SECRET = "Q6DAGSq6QvWBEkmOOVoUVmg5WR4b4Hr1LU7WEH6ac";
+							});
+		</script>
+		
+		<!-- Timestamps prevent cached scripts screwing with testing - REMOVE WHEN GAME IS COMPLETE -->
+		<script type="text/javascript" src="js/bison.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Socket.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Vector.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Rocket.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Bullet.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Player.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Viewport.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Star.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/Game.js?<?=time()?>"></script>
+		<script type="text/javascript" src="js/main.js?<?=time()?>"></script>
+	</body>
+
+</html>

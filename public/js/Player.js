@@ -215,11 +215,14 @@ Player.prototype.shoot = function() {
 	bullet.velocity.set(Math.sin(this.rocket.angle)*bullet.velocityAmount, Math.cos(this.rocket.angle)*bullet.velocityAmount);
 	
 	this.bullets.push(bullet);*/
+
+	/* Disable shoot delay
 	this.allowedToShoot = false;
 	var self = this;
 	setTimeout(function() {
 		self.allowedToShoot = true;
 	}, 500);
+	*/
 };
 
 Player.prototype.kill = function(viewport) {
