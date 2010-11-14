@@ -18,7 +18,7 @@ var Rocket = function() {
 	this.rotateRight = false;
 	this.rotationVelocity = 0.15;
 	this.showFlame = false;
-	this.thrust = 0.5;
+	this.thrust = 1.5;
 	this.velocity = new Vector(0.0, 0.0);
 	//this.trailWorld = []; // In world coordinate space
 	//this.trail; // In screen coordinate space
