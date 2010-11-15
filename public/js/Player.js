@@ -227,25 +227,25 @@ Player.prototype.shoot = function() {
 
 Player.prototype.kill = function(viewport) {
 	if (this.alive) {
-		this.alive = false;
-		this.allowedToShoot = false;
+//		this.alive = false;
+//		this.allowedToShoot = false;
 		this.forceUpdate = true;
-		this.rocket.rotateLeft = false;
-		this.rocket.rotateRight = false;
-		this.rocket.showFlame = false;
+//		this.rocket.rotateLeft = false;
+//		this.rocket.rotateRight = false;
+//		this.rocket.showFlame = false;
 		this.rocket.colour = "rgba(243, 113, 9, 0.5)";
 		
 		var self = this;
 		setTimeout(function() {
 			self.rocket.colour = self.rocket.originalColour;
-			self.alive = true;
+//			self.alive = true;
 			
-			if (viewport != undefined) {
-				self.allowedToShoot = true;
-				self.pos.x = Math.random()*viewport.worldWidth;
-				self.pos.y = Math.random()*viewport.worldHeight;
-				self.teleport = true;
-			};
+//			if (viewport != undefined) {
+//				self.allowedToShoot = true;
+//				self.pos.x = Math.random()*viewport.worldWidth;
+//				self.pos.y = Math.random()*viewport.worldHeight;
+//				self.teleport = true;
+//			};
 		}, 2000);
 	};
 };
