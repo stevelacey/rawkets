@@ -542,10 +542,10 @@ Game.prototype.keyDown = function(e) {
 	// Refer to key codes using descriptive variables (enumeration)
 	var space = 32;
 	var arrow = {left: 37, up: 38, right: 39, down: 40 };
-	
+
 	// Horrible passing of game object due to event closure
 	var self = e.data.self;
-	
+
 	switch (keyCode) {
 		case arrow.left:
 			if (!self.player.rocket.rotateLeft)
@@ -595,6 +595,14 @@ Game.prototype.keyUp = function(e) {
 			self.player.fireGun = false;
 			break;
 	};
+};
+
+Game.prototype.mouseDown = function(e) {
+  self.player.fireGun = true;
+};
+
+Game.prototype.mouseUp = function(e) {
+  self.player.fireGun = false;
 };
 
 /**

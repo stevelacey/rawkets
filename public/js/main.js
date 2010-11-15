@@ -46,7 +46,9 @@ $(function() {
 		$(window).bind("resize", {self: game}, game.resizeCanvas)
 				 // Horrible passing of game object due to event closure
 				 .bind("keydown", {self: game}, game.keyDown)
-				 .bind("keyup", {self: game}, game.keyUp);
+				 .bind("keyup", {self: game}, game.keyUp)
+         .bind("mousedown", {self: game}, game.mouseDown)
+         .bind("mouseup", {self: game}, game.mouseUp);
 	};
 	
 	// Initialise client-side functionality
