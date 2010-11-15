@@ -46,14 +46,14 @@ Viewport.prototype.withinBounds = function(x, y) {
  * @type Boolean
  */
 Viewport.prototype.withinWorldBounds = function(x, y) {
-	if (x > 0 && 
-		x < this.worldWidth &&
-		y > 0 &&
-		y < this.worldHeight) {
-		return true;	
-	}
+//	if (x > 0 &&
+//		x < this.worldWidth &&
+//		y > 0 &&
+//		y < this.worldHeight) {
+//		return true;	
+//	}
 	
-	return false;
+	return true;
 };
 
 /**
