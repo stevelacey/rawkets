@@ -187,7 +187,7 @@ function init() {
 									case "stevelacey": // Steve
 										colour = "rgb(10, 150, 225)";
 										break;
-									case "elliottkember": // Eliott
+									case "elliottkember": // Elliott
 										colour = "rgb(255, 0, 255)";
 										break;
 									case "JohnONolan": // John
