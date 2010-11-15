@@ -542,26 +542,40 @@ Game.prototype.keyDown = function(e) {
 	// Refer to key codes using descriptive variables (enumeration)
 	var space = 32;
 	var arrow = {left: 37, up: 38, right: 39, down: 40 };
+	var key = {left: 65, up: 87, right: 68, down: 83};
+	var strafe = {left: 81, right: 69};
 
 	// Horrible passing of game object due to event closure
 	var self = e.data.self;
 
 	switch (keyCode) {
 		case arrow.left:
+		case key.left:
 			if (!self.player.rocket.rotateLeft)
 				self.player.rotateLeft();
 			break;
 		case arrow.right:
+		case key.right:
 			if (!self.player.rocket.rotateRight)
 				self.player.rotateRight();
 			break;
 		case arrow.up:
+		case key.up:
 			if (!self.player.move)
 				self.player.moveForward();
 			break;
 		case arrow.down:
+		case key.down:
 			if (!self.player.reverse)
 				self.player.moveBackward();
+			break;
+    case strafe.left:
+      if(!self.player.strafe)
+        self.player.strafeLeft();
+			break;
+    case strafe.right:
+      if(!self.player.strafe)
+        self.player.strafeRight();
 			break;
 		case space:
 			self.player.fireGun = true;
@@ -577,22 +591,30 @@ Game.prototype.keyUp = function(e) {
 	// Refer to key codes using descriptive variables (enumeration)
 	var space = 32;
 	var arrow = {left: 37, up: 38, right: 39, down: 40 };
+	var key = {left: 65, up: 87, right: 68, down: 83};
+	var strafe = {left: 81, right: 69};
 	
 	// Horrible passing of game object due to event closure
 	var self = e.data.self;
 	
 	switch (keyCode) {
 		case arrow.left:
+		case key.left:
 			self.player.haltRotateLeft();
 			break;
 		case arrow.right:
+		case key.right:
 			self.player.haltRotateRight();
 			break;
 		case arrow.up:
+		case arrow.down:
+		case key.up:
+		case key.down:
 			self.player.haltMove();
 			break;
-		case arrow.down:
-			self.player.haltMove();
+    case strafe.left:
+    case strafe.right:
+			self.player.haltStrafe();
 			break;
 		case space:
 			self.player.fireGun = false;

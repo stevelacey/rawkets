@@ -18,6 +18,8 @@ var Player = function(x, y) {
 	this.fireGun = false;
 	this.killCount = 0;
 	this.move = false;
+	this.reverse = false;
+	this.strafe = false;
 	this.name;
 	this.ping = 0;
 	this.pos = new Vector(x, y);
@@ -60,29 +62,47 @@ Player.prototype.update = function(viewport) {
 	/*if (this.rocket.trailWorld.length > 0)
 		this.updateTrail(viewport);*/
 	
-	if (this.move && this.alive) {	
-		/*
-		// Add new trail to world array
-		this.rocket.trailWorld.push({pos: new Vector(this.pos.x, this.pos.y), opacity: 255});
-		
-		// Calculate offset of new trail from rocket based on world coordinates
-		if (this.rocket.trail > 0)
-			this.rocket.trail.push({pos: viewport.worldToScreen(this.pos.x, this.pos.y), opacity: 255});
-		*/
-		
-		var a = new Vector(Math.sin(this.rocket.angle)*this.rocket.thrust, Math.cos(this.rocket.angle)*this.rocket.thrust);
-		this.rocket.velocity.x += a.x;
-		this.rocket.velocity.y += a.y;
+	if (this.alive) {
+    if (this.move) {
+      /*
+      // Add new trail to world array
+      this.rocket.trailWorld.push({pos: new Vector(this.pos.x, this.pos.y), opacity: 255});
 
-		/*this.pos.x += 5*Math.sin(this.rocket.angle);
-		this.pos.y -= 5*Math.cos(this.rocket.angle);*/
-	};
+      // Calculate offset of new trail from rocket based on world coordinates
+      if (this.rocket.trail > 0)
+        this.rocket.trail.push({pos: viewport.worldToScreen(this.pos.x, this.pos.y), opacity: 255});
+      */
 
-	if (this.reverse && this.alive) {
-		var a = new Vector(Math.sin(this.rocket.angle)*this.rocket.thrust, Math.cos(this.rocket.angle)*this.rocket.thrust);
-		this.rocket.velocity.x -= a.x;
-		this.rocket.velocity.y -= a.y;
-	};
+      var a = new Vector(Math.sin(this.rocket.angle)*this.rocket.thrust, Math.cos(this.rocket.angle)*this.rocket.thrust);
+      this.rocket.velocity.x += a.x;
+      this.rocket.velocity.y += a.y;
+
+      /*this.pos.x += 5*Math.sin(this.rocket.angle);
+      this.pos.y -= 5*Math.cos(this.rocket.angle);*/
+    };
+
+    if (this.strafe) {
+      var angle = this.rocket.angle;
+
+      if (this.strafe == "left") {
+        angle -= Math.PI / 2;
+      };
+
+      if (this.strafe == "right") {
+        angle += Math.PI / 2;
+      };
+
+      var a = new Vector(Math.sin(angle)*this.rocket.thrust, Math.cos(angle)*this.rocket.thrust);
+      this.rocket.velocity.x += a.x;
+      this.rocket.velocity.y += a.y;
+    }
+
+    if (this.reverse) {
+      var a = new Vector(Math.sin(this.rocket.angle)*this.rocket.thrust, Math.cos(this.rocket.angle)*this.rocket.thrust);
+      this.rocket.velocity.x -= a.x;
+      this.rocket.velocity.y -= a.y;
+    }
+  };
 	
 	this.oldPos = new Vector(this.pos.x, this.pos.y);
 	
@@ -215,12 +235,37 @@ Player.prototype.moveBackward = function() {
 };
 
 /**
+ * Strafe player left
+ */
+Player.prototype.strafeLeft = function() {
+	if (this.alive) {
+		this.strafe = "left";
+	};
+};
+
+/**
+ * Strafe player right
+ */
+Player.prototype.strafeRight = function() {
+	if (this.alive) {
+		this.strafe = "right";
+	};
+};
+
+/**
  * Stop moving player
  */
 Player.prototype.haltMove = function() {
 	this.move = false;
 	this.reverse = false;
 	this.rocket.showFlame = false;
+};
+
+/**
+ * Stop strafing player
+ */
+Player.prototype.haltStrafe = function() {
+	this.strafe = false;
 };
 
 /**
