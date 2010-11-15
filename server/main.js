@@ -78,12 +78,12 @@ function init() {
 				switch (data.type) {
 					case MESSAGE_TYPE_AUTHENTICATE:
 						var oa = new OAuth(null,
-										   null,
-										   TWITTER_CONSUMER_KEY,
-										   TWITTER_CONSUMER_SECRET,
-										   "1.0A",
-										   null,
-										   "HMAC-SHA1");
+											null,
+											TWITTER_CONSUMER_KEY,
+											TWITTER_CONSUMER_SECRET,
+											"1.0A",
+											null,
+											"HMAC-SHA1");
 									
 						oa.get("http://api.twitter.com/1/account/verify_credentials.json", data.tat, data.tats, function(error, data) {
 							try {
@@ -163,12 +163,12 @@ function init() {
 						player.twitterAccessTokenSecret = data.tats;
 						
 						var oa = new OAuth(null,
-										   null,
-										   TWITTER_CONSUMER_KEY,
-										   TWITTER_CONSUMER_SECRET,
-										   "1.0A",
-										   null,
-										   "HMAC-SHA1");
+											null,
+											TWITTER_CONSUMER_KEY,
+											TWITTER_CONSUMER_SECRET,
+											"1.0A",
+											null,
+											"HMAC-SHA1");
 										
 						oa.get("http://api.twitter.com/1/account/verify_credentials.json", player.twitterAccessToken, player.twitterAccessTokenSecret, function(error, data) {
 							try {
@@ -185,8 +185,8 @@ function init() {
 							
 								switch (player.name) {
 									case "stevelacey": // Steve
-                                                                                colour = "rgb(10, 150, 225)";
-                                                                                break;
+										colour = "rgb(10, 150, 225)";
+										break;
 									case "elliottkember": // Eliott
 										colour = "rgb(255, 0, 255)";
 										break;
