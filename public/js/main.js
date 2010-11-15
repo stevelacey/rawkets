@@ -53,4 +53,8 @@ $(function() {
 	
 	// Initialise client-side functionality
 	init();
+
+  $("body").prepend($("<input/>", {type: "range", min: 1, max: 20, value: 1, css: {"position": "absolute", "z-index": 1}}).change(function() {
+    game.player.rocket.thrust = $(this).val();
+  }));
 });
