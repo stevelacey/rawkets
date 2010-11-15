@@ -569,13 +569,13 @@ Game.prototype.keyDown = function(e) {
 			if (!self.player.reverse)
 				self.player.moveBackward();
 			break;
-    case strafe.left:
-      if(!self.player.strafe)
-        self.player.strafeLeft();
+		case strafe.left:
+			if(!self.player.strafe)
+				self.player.strafeLeft();
 			break;
-    case strafe.right:
-      if(!self.player.strafe)
-        self.player.strafeRight();
+		case strafe.right:
+			if(!self.player.strafe)
+				self.player.strafeRight();
 			break;
 		case space:
 			self.player.fireGun = true;
@@ -612,8 +612,8 @@ Game.prototype.keyUp = function(e) {
 		case key.down:
 			self.player.haltMove();
 			break;
-    case strafe.left:
-    case strafe.right:
+		case strafe.left:
+		case strafe.right:
 			self.player.haltStrafe();
 			break;
 		case space:
@@ -623,11 +623,11 @@ Game.prototype.keyUp = function(e) {
 };
 
 Game.prototype.mouseDown = function(e) {
-  self.player.fireGun = true;
+	self.player.fireGun = true;
 };
 
 Game.prototype.mouseUp = function(e) {
-  self.player.fireGun = false;
+	self.player.fireGun = false;
 };
 
 /**

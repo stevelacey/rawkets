@@ -37,6 +37,10 @@ $(function() {
 		} else {
 			$("#mask, #support").fadeIn();
 		};
+
+		$("body").prepend($("<input/>", {type: "range", min: 1, max: 20, value: 1, css: {"position": "absolute", "right": 0, "z-index": 1}}).change(function() {
+			game.player.rocket.thrust = $(this).val();
+		}));
 	};
 	
 	/**
@@ -47,14 +51,10 @@ $(function() {
 				 // Horrible passing of game object due to event closure
 				 .bind("keydown", {self: game}, game.keyDown)
 				 .bind("keyup", {self: game}, game.keyUp)
-         .bind("mousedown", {self: game}, game.mouseDown)
-         .bind("mouseup", {self: game}, game.mouseUp);
+				 .bind("mousedown", {self: game}, game.mouseDown)
+				 .bind("mouseup", {self: game}, game.mouseUp);
 	};
 	
 	// Initialise client-side functionality
 	init();
-
-  $("body").prepend($("<input/>", {type: "range", min: 1, max: 20, value: 1, css: {"position": "absolute", "z-index": 1}}).change(function() {
-    game.player.rocket.thrust = $(this).val();
-  }));
 });
