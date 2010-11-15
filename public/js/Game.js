@@ -560,6 +560,8 @@ Game.prototype.keyDown = function(e) {
 				self.player.moveForward();
 			break;
 		case arrow.down:
+			if (!self.player.reverse)
+				self.player.moveBackward();
 			break;
 		case space:
 			self.player.fireGun = true;
@@ -590,6 +592,7 @@ Game.prototype.keyUp = function(e) {
 			self.player.haltMove();
 			break;
 		case arrow.down:
+			self.player.haltMove();
 			break;
 		case space:
 			self.player.fireGun = false;

@@ -77,6 +77,12 @@ Player.prototype.update = function(viewport) {
 		/*this.pos.x += 5*Math.sin(this.rocket.angle);
 		this.pos.y -= 5*Math.cos(this.rocket.angle);*/
 	};
+
+	if (this.reverse && this.alive) {
+		var a = new Vector(Math.sin(this.rocket.angle)*this.rocket.thrust, Math.cos(this.rocket.angle)*this.rocket.thrust);
+		this.rocket.velocity.x -= a.x;
+		this.rocket.velocity.y -= a.y;
+	};
 	
 	this.oldPos = new Vector(this.pos.x, this.pos.y);
 	
@@ -199,10 +205,21 @@ Player.prototype.moveForward = function() {
 };
 
 /**
+ * Move player backwards
+ */
+Player.prototype.moveBackward = function() {
+	if (this.alive) {
+		this.reverse = true;
+		this.rocket.showFlame = true;
+	};
+};
+
+/**
  * Stop moving player
  */
 Player.prototype.haltMove = function() {
 	this.move = false;
+	this.reverse = false;
 	this.rocket.showFlame = false;
 };
 
