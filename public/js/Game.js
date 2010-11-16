@@ -376,10 +376,24 @@ Game.prototype.update = function() {
 		};
 	};
 		
-	if (this.player.fireGun && this.player.allowedToShoot && this.player.alive) {
-		var msg = Game.formatMessage(Game.MESSAGE_TYPE_ADD_BULLET, {x: this.player.pos.x, y: this.player.pos.y, vX: this.player.rocket.velocity.x+(Math.sin(this.player.rocket.angle)*15), vY: this.player.rocket.velocity.y+(Math.cos(this.player.rocket.angle)*15)});
-		this.socket.send(msg);
-		this.player.shoot();
+	if (this.player.allowedToShoot && this.player.alive) {
+		var angle = this.player.rocket.angle;
+
+		if(this.player.fireScatterGun) {
+			var offset = Math.PI / 16 * Math.random();
+
+			if(Math.round(Math.random())) {
+				angle += offset;
+			} else {
+				angle -= offset;
+			};
+		};
+
+		if(this.player.fireGun || this.player.fireScatterGun) {
+			var msg = Game.formatMessage(Game.MESSAGE_TYPE_ADD_BULLET, {x: this.player.pos.x, y: this.player.pos.y, vX: this.player.rocket.velocity.x+(Math.sin(angle)*15), vY: this.player.rocket.velocity.y+(Math.cos(angle)*15)});
+			this.socket.send(msg);
+			this.player.shoot();
+		};
 	};
 };
 
@@ -623,11 +637,11 @@ Game.prototype.keyUp = function(e) {
 };
 
 Game.prototype.mouseDown = function(e) {
-	self.player.fireGun = true;
+	self.player.fireScatterGun = true;
 };
 
 Game.prototype.mouseUp = function(e) {
-	self.player.fireGun = false;
+	self.player.fireScatterGun = false;
 };
 
 /**
