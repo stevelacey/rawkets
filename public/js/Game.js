@@ -394,6 +394,16 @@ Game.prototype.update = function() {
 			this.socket.send(msg);
 			this.player.shoot();
 		};
+
+    if(this.player.bomb) {
+      for(var i = 0; i < 32; i+=0.5) {
+        angle = this.player.rocket.angle + (Math.PI / 4 * i);
+        
+        var msg = Game.formatMessage(Game.MESSAGE_TYPE_ADD_BULLET, {x: this.player.pos.x, y: this.player.pos.y, vX: this.player.rocket.velocity.x+(Math.sin(angle)*15), vY: this.player.rocket.velocity.y+(Math.cos(angle)*15)});
+        this.socket.send(msg);
+        this.player.shoot();
+      }
+    }
 	};
 };
 
@@ -556,7 +566,7 @@ Game.prototype.keyDown = function(e) {
 	// Refer to key codes using descriptive variables (enumeration)
 	var space = 32;
 	var arrow = {left: 37, up: 38, right: 39, down: 40 };
-	var key = {left: 65, up: 87, right: 68, down: 83};
+	var key = {left: 65, up: 87, right: 68, down: 83, bomb: 88};
 	var strafe = {left: 81, right: 69};
 
 	// Horrible passing of game object due to event closure
@@ -594,6 +604,9 @@ Game.prototype.keyDown = function(e) {
 		case space:
 			self.player.fireGun = true;
 			break;
+		case key.bomb:
+			self.player.bomb = true;
+			break;
 	};
 };
 
@@ -605,7 +618,7 @@ Game.prototype.keyUp = function(e) {
 	// Refer to key codes using descriptive variables (enumeration)
 	var space = 32;
 	var arrow = {left: 37, up: 38, right: 39, down: 40 };
-	var key = {left: 65, up: 87, right: 68, down: 83};
+	var key = {left: 65, up: 87, right: 68, down: 83, bomb: 88};
 	var strafe = {left: 81, right: 69};
 	
 	// Horrible passing of game object due to event closure
@@ -632,6 +645,9 @@ Game.prototype.keyUp = function(e) {
 			break;
 		case space:
 			self.player.fireGun = false;
+			break;
+		case key.bomb:
+			self.player.bomb = false;
 			break;
 	};
 };
